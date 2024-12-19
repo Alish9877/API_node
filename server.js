@@ -20,10 +20,7 @@ app.post('/weather', async (req, res) => {
   const zipCode = req.body.zipCode
 
   try {
-    console.log('Received zip code:', zipCode)
-
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${process.env.API_KEY}&units=imperial`
-    console.log('Weather API URL:', weatherUrl);
 
     
     const response = await axios.get(weatherUrl)
@@ -36,7 +33,6 @@ app.post('/weather', async (req, res) => {
     }
     res.render('show', { weather })
   } catch (error) {
-    // Log detailed error information
     console.log('Error details:', error.response ? error.response.data : error.message);
     res.status(500).send('Something went wrong!')
   }
